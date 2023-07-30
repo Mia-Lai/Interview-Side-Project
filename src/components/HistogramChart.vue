@@ -6,7 +6,7 @@
     :colors="colors"
     :data="chartData"
     :title="title"
-    :legend-visible="false"
+    :legend-visible="true"
     :height="height"
     class="histogram-chart"
   />
@@ -47,7 +47,7 @@ export default {
 
   data(){
     return {
-      colors: ['#2E86C1','#EC7063'],
+      colors: ['#f0a35c','#6091c1',],
       chartSettings: {
         labelMap: {
           economic_growth_rate: '經濟成長率',
@@ -55,17 +55,23 @@ export default {
         },
         axisSite: { right: ['economic_growth_rate'] },
         showLine: ['economic_growth_rate'],
-        min: [-5, -5],
-        max: [200, 20]
+        max: [250, 20],
+        yAxisName: ['平均工時', '經濟成長率'],
       },
       grid: {
         x: 10,
-        y: 60,
+        y: 70,
         y2: 25,
         x2: 25
       },
       chartExtend: {
         xAxis: {
+          name: '年份',
+          nameTextStyle: {
+            fontSize: 14,
+            lineHeight: 20,
+            fontWeight: 'bold'
+          },
           axisLine: {
             lineStyle: {
               color: 'black'
@@ -76,6 +82,11 @@ export default {
           }
         },
         yAxis: {
+          nameTextStyle: {
+            fontSize: 14,
+            lineHeight: 20,
+            fontWeight: 'bold'
+          },
           axisLine: {
             lineStyle: {
               color: 'black'
@@ -87,7 +98,10 @@ export default {
         },
         series (v) {
           v.forEach(i => {
-            i.barWidth = 15
+            i.barWidth = 18
+            i.lineStyle = {
+              width: 3.5
+            }
           })
           return v
         },
@@ -98,9 +112,9 @@ export default {
 </script>
 <style lang="scss">
 .histogram-chart {
-  width:100% !important;
-  background-color:white;
-  border-radius:5px;
-  box-shadow:0px 2px 2px 1px #BDBDBD;
+  width: 100% !important;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0px 2px 2px 1px #BDBDBD;
 }
 </style>
